@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter</title>
+</head>
+<body>
+<h1>Hello Twitter</h1>
+
+<table>
+    <tr th:each="t:${twittList}">
+        <h2 th:text="${t.getMessage()}"></h2>
+        <p th:text="${t.time}"></p>
+        <p>######################</p>
+    </tr>
+</table>
+</body>
+</html>
