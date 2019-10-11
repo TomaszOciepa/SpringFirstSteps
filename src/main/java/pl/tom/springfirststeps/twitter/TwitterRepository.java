@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TwitterRepository {
@@ -20,5 +21,9 @@ public class TwitterRepository {
 
     public List<Twitter> getTwitterList() {
         return twitterList;
+    }
+
+    public List<Twitter> getTwitterList(int id){
+        return twitterList.stream().filter(s -> s.getId() == id).collect(Collectors.toList());
     }
 }
