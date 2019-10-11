@@ -1,0 +1,6 @@
+getting query parameters:
+http://localhost:8080/twitter?id=2
+
+getting path parameters:
+http://localhost:8080/twitter/2
+
