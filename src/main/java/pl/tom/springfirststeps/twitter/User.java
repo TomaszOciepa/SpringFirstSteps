@@ -3,10 +3,21 @@ package pl.tom.springfirststeps.twitter;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class User {
+    @NotNull
+    @Size(min = 2, max = 30)
     private String firstName;
+    @NotNull
+    @Size(min = 2, max = 30)
     private String lastName;
+    @NotNull
+    @Size(min = 5, max = 16)
     private String username;
+    @NotNull
+    @Size(min = 6, max = 25)
     private String password;
 
     public User(String firstName, String lastName, String username, String password) {

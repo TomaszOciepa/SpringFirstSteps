@@ -3,11 +3,14 @@ package pl.tom.springfirststeps.twitter.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.tom.springfirststeps.twitter.User;
 import pl.tom.springfirststeps.twitter.UserRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -26,7 +29,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String processRegistration(User user){
+    public String processRegistration(@Valid User user, Errors errors){
+
+        if (errors.hasErrors()){
+            return "registerForm";
+        }
         userRepository.save(user);
         return "redirect:/user/"+ user.getUsername();
     }
