@@ -8,11 +8,29 @@
 <body>
 <h1>Rejestracja</h1>
 <form method="POST">
-    Imię: <input type="text" name="firstName" /><br/>
-    Nazwisko: <input type="text" name="lastName" /><br/>
-    Nazwa użytkownika: <input type="text" name="username" /><br/>
-    Hasło: <input type="password" name="password" /><br/>
-    <input type="submit" value="Zarejestruj" />
+
+    <form method="POST" th:object="${user}">
+        <div class="errors" th:if="${#fields.hasErrors('*')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dane wejściowe są niepoprawne</li>
+            </ul>
+        </div>
+
+        <label th:class="${#fields.hasErrors('firstName')}? 'error'">  Imię</label>:
+        <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}? 'error'"/><br/>
+
+        <label th:class="${#fields.hasErrors('lastName')}? 'error'">Nazwisko</label>:
+        <input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')}? 'error'"/><br/>
+
+        <label th:class="${#fields.hasErrors('username')}? 'error'">Nazwa użytkownika</label>:
+        <input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}? 'error'"/><br/>
+
+        <label th:class="${#fields.hasErrors('password')}? 'error'">Hasło</label>:
+        <input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? 'error'"/><br/>
+
+        <input type="submit" value="Zarejestruj"/>
+    </form>
+
 </form>
 </body>
 </html>

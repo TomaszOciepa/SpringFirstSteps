@@ -20,6 +20,7 @@ public class User {
     @Size(min = 6, max = 25)
     private String password;
 
+
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

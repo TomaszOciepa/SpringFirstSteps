@@ -24,7 +24,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String showRegistrationForm(){
+    public String showRegistrationForm(User user, Model model){
+        model.addAttribute("user", user);
         return "registerForm";
     }
 
