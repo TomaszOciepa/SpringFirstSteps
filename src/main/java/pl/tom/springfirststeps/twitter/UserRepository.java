@@ -22,7 +22,11 @@ public class UserRepository {
 
     public User findByUsername(String username){
         List<User> user = new ArrayList<>();
-        user.add(userList.stream().filter(s -> s.getUsername().equals(username)).collect(Collectors.toList()).get(0));
+        try {
+            user.add(userList.stream().filter(s -> s.getUsername().equals(username)).collect(Collectors.toList()).get(0));
+        }catch (IndexOutOfBoundsException e){
+            throw new UserNotFoundException();
+        }
         User u = new User(user.get(0).getFirstName(), user.get(0).getLastName(), user.get(0).getUsername(), user.get(0).getPassword() );
         return u;
     }

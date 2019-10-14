@@ -1,12 +1,14 @@
 package pl.tom.springfirststeps.twitter.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import pl.tom.springfirststeps.twitter.User;
 import pl.tom.springfirststeps.twitter.UserRepository;
 
@@ -39,11 +41,14 @@ public class UserController {
         return "redirect:/user/"+ user.getUsername();
     }
 
+
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public String showUserProfle(@PathVariable String username, Model model){
         User user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
         return "profile";
     }
+
+
 
 }
